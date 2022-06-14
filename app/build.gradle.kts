@@ -19,7 +19,6 @@ repositories {
 dependencies {
     implementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
     implementation("com.amazonaws:aws-lambda-java-core:1.2.1")
 
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")

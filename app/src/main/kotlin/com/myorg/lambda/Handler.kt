@@ -1,25 +1,21 @@
 package com.myorg.lambda
 
 import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestStreamHandler
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import java.io.InputStream
-import java.io.OutputStream
+import com.amazonaws.services.lambda.runtime.RequestHandler
 
-class HandlerRequest(var message: String?)
+class HandlerRequest(var message: String? = null)
+
 data class HandlerResponse(var message: String)
 
-class Handler : RequestStreamHandler {
-    private val mapper = jacksonObjectMapper()
-
+class Handler : RequestHandler<HandlerRequest, HandlerResponse> {
     override fun handleRequest(
-        input: InputStream,
-        output: OutputStream,
-        context: Context,
-    ) {
-        val request = mapper.readValue(input, HandlerRequest::class.java)
-        val response = Lambda.main(request)
+        input: HandlerRequest?,
+        context: Context?,
+    ): HandlerResponse {
+        input?.let {
+            return HandlerResponse("Hello, ${it.message ?: "none"}")
+        }
 
-        mapper.writeValue(output, response)
+        return HandlerResponse("None")
     }
 }
