@@ -13,7 +13,7 @@ class Handler : RequestHandler<HandlerRequest, HandlerResponse> {
         context: Context?,
     ): HandlerResponse {
         input?.let {
-            return HandlerResponse("Hello, ${it.message ?: "none"}")
+            return HandlerResponse("Hello, ${it.message ?: "empty"}")
         }
 
         return HandlerResponse("None")

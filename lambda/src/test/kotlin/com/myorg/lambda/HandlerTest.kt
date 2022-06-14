@@ -21,10 +21,17 @@ class HandlerTest : DescribeSpec({
         }
 
         it("should respond with a specific message") {
-            val request = HandlerRequest().also { it.message = "world" }
+            val request = HandlerRequest("world")
             val response = handler.handleRequest(request, null)
 
             response.message shouldBeEqualComparingTo "Hello, world"
+        }
+
+        it("should respond with 'empty' if given no message") {
+            val request = HandlerRequest()
+            val response = handler.handleRequest(request, context)
+
+            response.message shouldBeEqualComparingTo "Hello, empty"
         }
 
         it("should respond with 'None' when given no input") {
