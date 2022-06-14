@@ -19,6 +19,7 @@ class Handler : RequestStreamHandler {
     ) {
         val request = mapper.readValue(input, HandlerRequest::class.java)
         val response = Lambda.main(request)
-        return mapper.writeValue(output, response)
+
+        mapper.writeValue(output, response)
     }
 }
