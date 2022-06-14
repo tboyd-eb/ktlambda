@@ -8,10 +8,11 @@ import io.mockk.mockk
 
 class HandlerTest : DescribeSpec({
     describe("Handler") {
-        val handler = Handler()
+        lateinit var handler: Handler
         lateinit var context: Context
 
         beforeEach {
+            handler = Handler()
             context = mockk(relaxed = true)
         }
 
@@ -27,7 +28,7 @@ class HandlerTest : DescribeSpec({
         }
 
         it("should respond with 'None' when given no input") {
-            val response = Handler().handleRequest(null, context)
+            val response = handler.handleRequest(null, context)
 
             response.message shouldBeEqualComparingTo "None"
         }
