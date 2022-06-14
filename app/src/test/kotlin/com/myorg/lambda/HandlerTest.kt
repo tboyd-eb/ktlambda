@@ -6,7 +6,7 @@ import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.shouldNotBe
 import io.mockk.mockk
 
-class AppTest : DescribeSpec({
+class HandlerTest : DescribeSpec({
     describe("Handler") {
         val handler = Handler()
         lateinit var context: Context
